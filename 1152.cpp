@@ -10,7 +10,6 @@ int main()
 	int ans = 0;
 	getline(cin, str);
 	int size_ = str.length();
-	cout << str << endl;
 	for (int i = 0; i < size_; i++) {
 		if (str[i] == ' ') ans++;	
 	}

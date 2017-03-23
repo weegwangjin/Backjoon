@@ -11,9 +11,7 @@ int N, M, set[MaxSize], sum;
 struct Node
 
 {
-
 	int x, y, w;
-
 }cost[MaxSize];
 
 bool compare(const Node &i, const Node &j) { return i.w<j.w; }
@@ -41,23 +39,14 @@ int main()
 	sort(cost + 1, cost + 1 + M, compare);
 	for (i = 1; i <= N; i++) set[i] = i;
 	for (i = 1; i <= M; i++)
-
 	{
-
 		ra = f(cost[i].x);
-
 		rb = f(cost[i].y);
-
 		if (ra == rb) continue;
-
 		ra>rb ? set[ra] = rb : set[rb] = ra;
-
 		sum += cost[i].w;
-
 	}
-
 	printf("%d", sum);
-
 	return 0;
 
 }

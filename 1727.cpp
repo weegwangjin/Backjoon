@@ -19,8 +19,8 @@ int main()
 	for (int i = 1; i <= m; i++) {
 		cin >> woman[i];
 	}
-	sort(man, man + n);
-	sort(woman, woman + m);
+	sort(man+1, man+1 + n);
+	sort(woman+1, woman +1+ m);
 	for (int i = 1; i <= n; i++) {
 		for (int j = 1; j <= m; j++) {
 			if (i == j) {
