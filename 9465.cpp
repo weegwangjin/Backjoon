@@ -4,57 +4,32 @@
 #include <algorithm>
 using namespace std;
 
-int main() {
-	int T;
-	scanf("%d", &T);
-	while (T--) {
-		int i, j,n;
-		int stk[2][100002];
-		int sub[2][100002];
-		scanf("%d", &n);
-		for (i = 0; i < 2; i++) {
-			for (j = 0; j < n; j++) {
-				scanf("%d", &stk[i][j]);
-			}
-		}
-		for (i = 0; i < 2; i++) {
-			int sum = 0;
-			for (j = 0; j < n; j++) {
-				if (i - 1 >= 0) {
-					sum += stk[i - 1][j];
-				}
-				if (!i) {
-					sum += stk[i + 1][j];
-				}
-				if (j - 1 >= 0) {
-					sum += stk[i][j - 1];
-				}
-				if (j + 1 < n) {
-					sum += stk[i][j + 1];
-				}
-				sub[i][j] = stk[i][j] - sum;
-			}
-		}
-		int sum = 0;
-		for (i = 0; i < 2; i++) {
-			int max_ = -1;
-			for (j = 0; j < n; j++) {
-				if (i) {
-					max_ = max(sub[i][j], sub[i - 1][j]);
-				}
-				if (!i) {
-					max_ = max(sub[i][j], sub[i + 1][j]);
-				}
-				if (j - 1 >= 0) {
-					max_ = max(sub[i][j], sub[i][j - 1]);
-				}
-				if (j + 1 < n) {
-					max_ = max(sub[i][j], sub[i][j + 1]);
-				}
-				if (max_ == sub[i][j]) {
 
-				}
+int dp[2][100001];
+int arr[2][100001];
+
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		for (int i = 0;i<2; i++) {
+			for (int j = 1; j <= n; j++) {
+				cin >> arr[i][j];
+			}
+		}
+		for (int i = 1; i <= n; i++) {
+			dp[0][i] = max(dp[0][i - 1], arr[0][i] + dp[1][i - 1]);
+			dp[1][i] = max(dp[1][i - 1], arr[1][i] + dp[0][i - 1]);
+		}
+		cout << max(dp[0][n], dp[1][n]) << endl;
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j <= n; j++) {
+				dp[i][j] = 0;
 			}
 		}
 	}
+	
 }
